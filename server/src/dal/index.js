@@ -221,6 +221,13 @@ export function deleteLocksBySession(sessionId) {
   db.prepare('DELETE FROM seat_locks WHERE session_id = ?').run(sessionId);
 }
 
+export function deleteLocksForSeats({ routeId, travelDate, seatIds }) {
+  if (seatIds.length === 0) return;
+  const placeholders = seatIds.map(() => '?').join(', ');
+  db.prepare(`DELETE FROM seat_locks WHERE route_id = ? AND travel_date = ? AND seat_id IN (${placeholders})`)
+    .run(routeId, travelDate, ...seatIds);
+}
+
 // ------------------------------------------------------------- bookings
 
 export function createBooking({
