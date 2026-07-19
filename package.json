@@ -1,0 +1,18 @@
+{
+  "name": "booking-made-easy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Booking Made Easy - train reservation prototype for Freedom Travels Inc.",
+  "type": "module",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,green \"npm run dev -w server\" \"npm run dev -w client\"",
+    "seed": "npm run seed -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
