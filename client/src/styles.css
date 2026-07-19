@@ -1,0 +1,197 @@
+/* Booking Made Easy — single stylesheet, one accent color. */
+:root {
+  --accent: #1d5fd6;
+  --accent-dark: #17499f;
+  --accent-soft: #e8effc;
+  --ink: #1c2434;
+  --muted: #6b7486;
+  --line: #dde2ea;
+  --bg: #f5f7fb;
+  --danger: #c0392b;
+  --warning-bg: #fdf3d7;
+  --warning-ink: #8a6d1a;
+  --ok: #1e8e4e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ---------- header / footer ---------- */
+.site-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.75rem 1.5rem; background: #fff; border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; }
+.brand-mark { font-size: 1.6rem; }
+.brand strong { display: block; font-size: 1.05rem; }
+.brand small { display: block; color: var(--muted); font-size: 0.75rem; }
+.header-user { display: flex; align-items: center; gap: 0.75rem; color: var(--muted); }
+.site-footer {
+  margin-top: auto; padding: 1rem 1.5rem; text-align: center;
+  color: var(--muted); font-size: 0.8rem;
+}
+
+/* ---------- layout ---------- */
+.page { width: 100%; max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+.page-narrow { max-width: 640px; }
+.page-heading { margin-bottom: 1.25rem; }
+.page-heading h1 { margin: 0 0 0.25rem; }
+h1 { font-size: 1.6rem; }
+h3 { margin: 1rem 0 0.5rem; font-size: 1rem; }
+
+.card {
+  background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  padding: 1.5rem; box-shadow: 0 1px 3px rgba(28, 36, 52, 0.05);
+}
+.muted { color: var(--muted); }
+a { color: var(--accent); }
+
+/* ---------- forms ---------- */
+label { display: block; margin: 0.75rem 0; font-weight: 600; font-size: 0.9rem; }
+input, select {
+  display: block; width: 100%; margin-top: 0.3rem; padding: 0.55rem 0.7rem;
+  font: inherit; font-weight: 400; border: 1px solid var(--line); border-radius: 7px;
+  background: #fff; color: var(--ink);
+}
+input:focus, select:focus {
+  outline: 2px solid var(--accent-soft); border-color: var(--accent);
+}
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-error { color: var(--danger); font-size: 0.9rem; margin: 0.75rem 0; }
+.form-switch { margin-top: 1rem; color: var(--muted); }
+.demo-hint {
+  margin-top: 1rem; padding: 0.5rem 0.75rem; background: var(--accent-soft);
+  border-radius: 7px; font-size: 0.85rem; color: var(--accent-dark);
+}
+
+.btn-primary {
+  display: inline-block; width: 100%; margin-top: 0.75rem; padding: 0.65rem 1.2rem;
+  font: inherit; font-weight: 600; color: #fff; background: var(--accent);
+  border: none; border-radius: 7px; cursor: pointer; text-align: center;
+  text-decoration: none;
+}
+.btn-primary:hover:not(:disabled) { background: var(--accent-dark); }
+.btn-primary:disabled { background: #aebbd3; cursor: not-allowed; }
+.btn-inline { width: auto; }
+.btn-link {
+  background: none; border: none; padding: 0; font: inherit; color: var(--accent);
+  cursor: pointer; text-decoration: underline;
+}
+
+/* ---------- search results ---------- */
+.train-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.train-card { display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
+.train-title { font-size: 1.05rem; margin-bottom: 0.35rem; }
+.train-times { display: flex; gap: 0.75rem; align-items: baseline; flex-wrap: wrap; }
+.train-arrow { color: var(--muted); }
+.train-side { text-align: right; min-width: 130px; }
+.train-fare { font-size: 1.3rem; font-weight: 700; color: var(--accent-dark); }
+.seats-low { color: var(--danger); }
+.empty-state { text-align: center; padding: 2.5rem; }
+
+/* ---------- seat map ---------- */
+.seat-layout { display: grid; grid-template-columns: 1fr 280px; gap: 1.25rem; align-items: start; }
+.seat-legend { display: flex; gap: 1.25rem; margin-bottom: 1rem; font-size: 0.85rem; color: var(--muted); }
+.seat-legend span { display: flex; align-items: center; gap: 0.4rem; }
+.seat-chip {
+  display: inline-block; width: 14px; height: 14px; border-radius: 4px;
+  border: 1px solid var(--line);
+}
+.seat-chip.available { background: #fff; }
+.seat-chip.occupied { background: #cfd6e1; }
+.seat-chip.selected { background: var(--accent); border-color: var(--accent); }
+.seat-grid { display: grid; gap: 0.4rem; }
+.seat-row { display: flex; align-items: center; gap: 0.4rem; }
+.seat-row-label { width: 1.5rem; text-align: right; color: var(--muted); font-size: 0.8rem; }
+.seat-slot { display: flex; align-items: center; }
+.seat-aisle { display: inline-block; width: 1.4rem; }
+.seat {
+  width: 2.4rem; height: 2.4rem; border-radius: 7px 7px 4px 4px;
+  border: 1px solid var(--line); background: #fff; font: inherit;
+  font-size: 0.8rem; font-weight: 600; cursor: pointer; color: var(--ink);
+}
+.seat:hover:not(:disabled) { border-color: var(--accent); }
+.seat.occupied { background: #cfd6e1; color: #8a93a3; cursor: not-allowed; }
+.seat.selected { background: var(--accent); border-color: var(--accent); color: #fff; }
+.seat-side { position: sticky; top: 1rem; }
+.seat-counter { font-size: 1.05rem; }
+
+/* ---------- countdown ---------- */
+.countdown {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin: 0.75rem 0; padding: 0.55rem 0.8rem; border-radius: 7px;
+  background: var(--accent-soft); color: var(--accent-dark);
+}
+.countdown-warning { background: var(--warning-bg); color: var(--warning-ink); }
+.countdown-label { font-size: 0.85rem; }
+.countdown-time { font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.banner-warning {
+  margin-bottom: 1rem; padding: 0.75rem 1rem; border-radius: 8px;
+  background: var(--warning-bg); color: var(--warning-ink); font-weight: 600;
+}
+
+/* ---------- review / payment ---------- */
+.review-layout { display: grid; grid-template-columns: 1fr 320px; gap: 1.25rem; align-items: start; }
+.review-forms { display: grid; gap: 1rem; }
+.passenger-card h3 { margin-top: 0; }
+.review-side { position: sticky; top: 1rem; }
+.test-cards { font-size: 0.82rem; }
+
+.fare-summary dl { margin: 0; }
+.fare-line { display: flex; justify-content: space-between; padding: 0.3rem 0; }
+.fare-line dt { color: var(--muted); font-size: 0.9rem; }
+.fare-line dd { margin: 0; font-variant-numeric: tabular-nums; }
+.fare-total { border-top: 1px solid var(--line); margin-top: 0.4rem; padding-top: 0.6rem; }
+.fare-total dt, .fare-total dd { color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+
+/* ---------- confirmation ---------- */
+.confirmation-head { text-align: center; margin-bottom: 1rem; }
+.confirmation-check {
+  display: inline-flex; width: 3rem; height: 3rem; border-radius: 50%;
+  background: var(--ok); color: #fff; font-size: 1.6rem;
+  align-items: center; justify-content: center; margin-bottom: 0.5rem;
+}
+.booking-reference {
+  margin: 0.75rem auto; padding: 0.6rem 1.2rem; display: inline-block;
+  font-size: 1.6rem; font-weight: 800; letter-spacing: 0.08em;
+  background: var(--accent-soft); color: var(--accent-dark); border-radius: 8px;
+}
+.status-pill {
+  display: inline-block; margin-left: 0.5rem; padding: 0.15rem 0.7rem;
+  border-radius: 999px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+}
+.status-confirmed { background: #e3f4ea; color: var(--ok); }
+.status-pending { background: var(--warning-bg); color: var(--warning-ink); }
+.status-failed { background: #fbe6e3; color: var(--danger); }
+
+.passenger-table { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; }
+.passenger-table th, .passenger-table td {
+  text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--line);
+  font-size: 0.92rem;
+}
+.passenger-table th { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; }
+
+.email-preview { margin-top: 1.25rem; }
+.email-body {
+  margin-top: 0.75rem; padding: 1rem; background: #f8f9fc;
+  border: 1px dashed var(--line); border-radius: 8px;
+  font-family: Consolas, monospace; font-size: 0.8rem;
+  white-space: pre-wrap; overflow-x: auto;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 760px) {
+  .seat-layout, .review-layout { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; }
+  .train-card { flex-direction: column; align-items: stretch; }
+  .train-side { text-align: left; }
+}
